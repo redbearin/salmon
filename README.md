@@ -10,4 +10,4 @@ The form has been created, but it is not operational. I am still struggling with
 
 I played with some CSS features and am starting to understand how I can get some of the features to work .
 
-I am not sure how to convert the time to am and pm.   
+I am not sure how to convert the time to am and pm.  
