@@ -5,8 +5,8 @@ var _random = function getRandomArbitrary(min, max) {
 
 var Store = function(name, min_customers, max_customers, avg_cookies_per_customer, open_time, close_time){
   this.name = name;
-  this.min_customers = min_customers; //use for random customer generator
-  this.max_customers = max_customers; //use for random customer generator
+  this.min_customers = min_customers; 
+  this.max_customers = max_customers; 
   this.avg_cookies_per_hour = [];
   this.time = [];
   this.total_cookies = 0;
@@ -18,8 +18,8 @@ var Store = function(name, min_customers, max_customers, avg_cookies_per_custome
 //This function calculates the average number of cookies per hour.
 Store.prototype.number_cookies_per_hour = function() {  
   for (var i = 0; i < (this.close_time - this.open_time); i++){
-    var number_customers = _random (this.min_customers, this.max_customers);
-    var cookies = Math.floor(number_customers * this.avg_cookies_per_customer);
+    var number_customers = Math.floor(_random (this.min_customers, this.max_customers));
+    var cookies = number_customers * Math.floor(this.avg_cookies_per_customer);
     this.avg_cookies_per_hour.push(cookies);
   }
 };  
@@ -54,14 +54,10 @@ Store.prototype.create_table = function() {
   var target = document.getElementById('store-header');
   var table_row = document.createElement('tr');
   var table_header = document.createElement('thead');
-  var table_footer = document.createElement('tfoot');
   var store_header_element = document.createElement('td');
   var store_header_element_2 = document.createElement('td');
   var store_table_element = document.createElement('td');
   var store_table_element_2 = document.createElement('td');
-  var store_footer_element = document.createElement('td');
-  var store_footer_element_2 = document.createElement('td');
-
 
   //first row  - header and First and Pike
   if (this.name === "First and Pike") {
@@ -104,7 +100,7 @@ Store.prototype.create_table = function() {
 
     //attach to the row
     target.appendChild(table_row);
-  }
+  } 
 
   else {
     //store name, first column
@@ -126,34 +122,73 @@ Store.prototype.create_table = function() {
     //attach to the row
     target.appendChild(table_row);  
   }
-/*
-  //Not in loop
+};
+
+
+Store.prototype.create_table_footer = function() {
+  var target = document.getElementById('store-header');
+  var table_footer_row = document.createElement('tr');
+  var store_footer_element = document.createElement('td');
+  var table_row = document.createElement('tr');
+    
   //Last row - Problem with totaling function
   //total, first column
   store_footer_element.textContent = 'Total';
-  table_footer.appendChild(store_footer_element);
+  table_footer_row.appendChild(store_footer_element);
   
-  //stores totals by hour for all stores
+ 
+  //stores totals by HOUR for all stores
+  var totalForEachHour = 0;
   for (var s = 0; s < (this.close_time - this.open_time); s++){
-    table_footer_element.textContent = firstAndPike.avg_cookies_per_hour[s]+seaTacAirport.avg_cookies_per_hour[s]+seattleCenter.avg_cookies_per_hour[s]+capitolHill.avg_cookies_per_hour[s]+ alki.avg_cookies_per_hour[s];
-    table_footer.appendChild(table_footer_element);
-    console.log(table_footer_element.textContent);
+    var store_footer_element_2 = document.createElement('td');
+    totalForEachHour = firstAndPike.avg_cookies_per_hour[s]+seaTacAirport.avg_cookies_per_hour[s]+seattleCenter.avg_cookies_per_hour[s]+capitolHill.avg_cookies_per_hour[s]+ alki.avg_cookies_per_hour[s];
+    store_footer_element_2.textContent = totalForEachHour;
+    table_footer_row.appendChild(store_footer_element_2);
   }
+  //target.appendChild(table_footer_row); 
+//};
 
   //total of the totals
+  var sum_of_all = 0;
+  var sum_of_array = 0;
   for (var t = 0; t < (this.close_time  - this.open_time); t++){
     //stores each hour in a different element - left to right
     sum_of_array = firstAndPike.avg_cookies_per_hour[t]+seaTacAirport.avg_cookies_per_hour[t]+seattleCenter.avg_cookies_per_hour[t]+capitolHill.avg_cookies_per_hour[t]+ alki.avg_cookies_per_hour[t];
     sum_of_all = sum_of_all + sum_of_array;
-    console.log(sum_of_all)
+  }
+  console.log('total' + sum_of_all);
+  var store_footer_element_3 = document.createElement('td');
+  store_footer_element_3.textContent = sum_of_all;
+  table_footer_row.appendChild(store_footer_element_3);
 
-store_footer_element_2.textContent = sum_of_all;
-table_footer.appendChild(store_footer_element_2);
+  //attach to row
+  target.appendChild(table_footer_row);
+};
 
-//attach to row
-target.appendChild(table_footer);
-*/
-  
+
+//CREATING A NEW STORE
+//this function processes everything that is in <form> part of the html
+//the way this tie is shown in html is with a special nominclature that identifies
+//the target and the value of that target --- now that is a cool feature of JS!!!
+
+var handle_form_input = function(form_event) {
+  // clears the default(whatever that is)
+  form_event.preventDefault();
+
+  //Assigns variable names to all the content that came in with the form.
+  var name = form_event.target.studentName.value;
+  var min_customers = form_event.target.minCust.value;
+  var max_customers = form_event.target.maxCust.value;
+  var open_time = form_event.target.openTime.value;
+  var close_time = form_event.target.closeTime.value;
+  var avg_cookies_per_customer = form_event.target.cookiesPerCustomer.value;
+
+  //creates an instance of the newStore object
+  var newStore = new Store (name, min_customers, max_customers, avg_cookies_per_customer, open_time, close_time);
+  newStore.calculateTime();
+  newStore.number_cookies_per_hour();
+  newStore.sum_cookies();
+  newStore.create_table();
 };
 
 
@@ -186,39 +221,16 @@ alki.calculateTime();
 alki.number_cookies_per_hour();
 alki.sum_cookies();
 alki.create_table();
+alki.create_table_footer();
 
-//This function allows changes to form from the screen
-//when event is triggered chrome creates an object
-//gives the event to the function as its first argument
+//LISTENERS
+//accesses a listener on the browser - this listener is only activated within the <form> part of the
+// html, because this is where 'input' is tied to the 'submit'id. Once the event is triggered the function handle_form_input will
+//begin.
 
-/*var handle_mouse_over = function (){
-  console.log(e.target);
-};
-  //document.addEventListener('mouseover', handle_mose_over)
+//Attaches what we are doing to the element that includes 'new-store-form'
+var store_form = document.getElementById('new-store-form');
+store_form.addEventListener('submit', handle_form_input);
 
-var hover_h2 = document.getElementById('hover-h2');
-hover_h2.addEventListener('mouseover', handle_mouse_over);
-
-var input = document.getElementbyId('input-to-change');
-
-input.addEventListener('change', function(form_event)){
-  console.log(corn_event.target.value);
-};
-
-
-var input = document.getElementById('button-clicker');
-var handle_button_press = function(event) {
-    alert('i can\'t believe you\'ve done this');
-  }
-
-button.addEventListener('click'), handle_button_press);
-form.addEventListener('submit', function(formSubmit){
-  formSubmit.preventDefault();
-  console.log(formSubmit);
-  console.log(formSubmit.target.studentName.value);
-  var student_name =formSubmit.target.studentname.value;
-  var color = formsubmit.target.value;
-  var hobby = formSubmit.target.hobby;
-}
-};
-*/
+/* GENERAL NOTE:
+//any_element.addEventListener('MDN has a pile of event types - check there', any function that you want it be perform)*/
