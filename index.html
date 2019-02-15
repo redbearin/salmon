@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang=eng>
+  <!-- <link href="css/reset.css" rel="stylesheet"> -->
   <link href="css/styles.css" rel="stylesheet">
   <head>
     <meta charset="UTF-8">
@@ -17,23 +18,22 @@
     <!-- <h2 id="hover-h2">Hover on me</h2> -->
     <table id="store-header"></table>
     <table id="store-table"></table>
+    <table id='store-footer'></table>
     <ul id="store"></ul>
-    <form id="form-to-change">
+    <form id="new-store-form">
       <fieldset>
         <h3>New Store</h3>
-        <label>name : <input name='studentName' id='input to change' type="text"></label></br>
-        <label>projected minimum customers : <input name='studentName' id='input to change' type="text"></label></br>
-        <label>projected maximum customers : <input name='studentName' id='input to change' type="text"></label></br>
-        <label>opening time : <input name='studentName' id='input to change' type="text"></label></br>
-        <label>closing time : <input name='studentName' id='input to change' type="text"></label></br>
-        <!-- <input name = 'favColor' type='text'> -->
-        <!-- <input name = 'hobby' type='text'> -->
+        <label>name : <input name='studentName' id='input-new-store-data' type="text"></label></br>
+        <label>projected minimum customers : <input name='minCust' id='input-new-store-data' type="text"></label></br>
+        <label>projected maximum customers : <input name='maxCust' id='input-new-store-data' type="text"></label></br>
+        <label>avg cookies/customer : <input name='cookiesPerCustomer' id='input-new-store-data' type="text"></label></br>
+        <label>opening time : <input name='openTime' id='input-new-store-data' type="text"></label></br>
+        <label>closing time : <input name='closeTime' id='input-new-store-data' type="text"></label></br>
         <input type = 'submit'>
         <button id="button-clicker">Click here to change location</button>
       </fieldset>
       <!-- <input id="input-to-change" type='text'> -->
     </form>
-
     <script src="app.js" type="text/javascript"></script>
 </body>
 </html>
