@@ -11,3 +11,7 @@ The form has been created, but it is not operational. I am still struggling with
 I played with some CSS features and am starting to understand how I can get some of the features to work .
 
 I am not sure how to convert the time to am and pm.  
+
+CSS references
+Blank lines in HTML https://www.quora.com/How-do-you-insert-a-blank-line-in-HTML
+Create a border line https://stackoverflow.com/questions/1261335/html-css-one-element-1-pixel-high-100-wide-0-images-single-color-all-brow

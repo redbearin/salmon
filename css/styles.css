@@ -1,53 +1,186 @@
-body {
-    background-color:  #8eb1b8;
+body, html{
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+body {  
     font-family: Arial, Helvetica, sans-serif;
+}
+
+#header-details {
+    display: inline-block;
+}
+.header-buttons {
+    float: right;
+}
+
+#button-text-links {
+    float: right;
+    background-color: white;
+    border: 1px solid black;
+    margin: 2px;
+}
+
+#company-details {
+    float: left;
+}
+
+#logo-details {
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+}
+#text-descriptions {
+    float: right;
+    display: inline-block;
+}
+
+#picture-set {
+    float: right;
+    display: inline-block;
+}
+
+#sub-text{
+    font-family: sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    font-variant: small-caps;
+}
+
+.gap-10 {
+    width:100%;
+    height:10px;
+}
+
+.gap-50 {
+    width:100%;
+    height:50px;
+}
+
+.gap-100 {
+    width:100%;
+    height:100px;
+}
+
+.hr {
+  height: 0px;
+  margin: 0px;
+  border-bottom: 3px solid rgb(78, 78, 78);
+  font-size: 3px;
+}
+
+.main-content{
+    width:  100%;
+}
+
+#main-picture {
+    width:  100%;
+}
+
+#main-text {
+    width: 880px;
+    text-align: justify;
+}
+
+#smaller-text {
+    font-size: 14px;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 10px;
+
+}
+
+#area-titles {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 100px 5px 5px 5px;
+}
+
+#area-sub-titles {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 30px 5px 5px 5px;
+}
+
+#button-clicker {
+    background-color: white;
+    color: black;
+    height: 20px;
+    width: 200px;
 }
 
 table{
     border: black 1px solid;
-    /* padding: 3em; */
-}
-
-thead {
-    width: 70px;
-    padding: 2px;
-    border: black .5px solid;
-    align-content: center;
+    padding: 3em; 
+    float: left;
+    background-color: rgb(115, 157, 177);
 }
 
 td {
     width: 70px;
     padding: 2px;
-    border: black .5px solid;
+    border: black 1px solid;
     text-align: center;
 }
 
-.medium {
-    width: 300px;
-}
 fieldset{
     width: 370px;
     line-height: 28px;
-}
-#input-to-change{
-    width: 50px;
-}
-
-h3 {
-    line-height: 3px;
-}
-
-h1{
-    line-height: 8px;
-    vertical-align: text-bottom;
-}
-
-#subhead{
-    text-emphasis: strong;
 }
 
 .small{
     width: 200px;
 }
+
+.large{
+    width: 400px;
+}   
+
+#button-links {
+    float: right;
+    background-color: white;
+    border: 2px solid black;
+    color: black;
+    height: 75px;
+    width: 150px;
+    margin: 10px;
+}
+
+#button-links-2 {
+    float: right;
+    background-color: rgb(180, 179, 179);
+    border: 2px solid black;
+    color: rgb(116, 91, 91);
+    height: 75px;
+    width: 150px;
+    margin: 10px;
+}
+#button-links-3 {
+    float: right;
+    background-color: rgb(196, 161, 106);
+    border: 2px solid black;
+    color: black;
+    font-size: 10px;
+    height: 75px;
+    width: 150px;
+    margin: 10px;
+}
+
+.button-image {
+    width: 120px;
+}
+.button-image-2 {
+    width: 100px;
+}
+.button-image-3 {
+    width: 70px;
+}
+
+
+
 
 

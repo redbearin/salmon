@@ -1,4 +1,7 @@
 'use strict';
+
+var salmonStore = [];
+
 var _random = function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
 };
@@ -129,7 +132,7 @@ Store.prototype.create_table_footer = function() {
   var target = document.getElementById('store-header');
   var table_footer_row = document.createElement('tr');
   var store_footer_element = document.createElement('td');
-  var table_row = document.createElement('tr');
+
     
   //Last row - Problem with totaling function
   //total, first column
@@ -189,32 +192,49 @@ var handle_form_input = function(form_event) {
   newStore.number_cookies_per_hour();
   newStore.sum_cookies();
   newStore.create_table();
-};
+  salmonStore.push(newStore);
 
+  //clear all table values and regenerate
+  document.getElementById('store-header').innerHTML ='';
+
+  //when an event it initiated regenerate the table and totals
+  for (var y = 0; y < salmonStore.length; y++){
+    var recreatingTable = new Store (salmonStore[y].name, salmonStore[y].min_customers, salmonStore[y].max_customers, salmonStore[y].avg_cookies_per_customer[y], salmonStore[y].open_time, salmonStore[y].close_time);
+    recreatingTable.calculateTime();
+    recreatingTable.number_cookies_per_hour();
+    recreatingTable.sum_cookies();
+    recreatingTable.create_table();
+  }
+  recreatingTable.create_table_footer();
+};
 
 var firstAndPike = new Store ("First and Pike", 23, 65, 6.3, 6, 20);
 firstAndPike.calculateTime();
 firstAndPike.number_cookies_per_hour();
 firstAndPike.sum_cookies();
 firstAndPike.create_table();
+salmonStore.push(firstAndPike);
 
 var seaTacAirport = new Store ("SeaTac Airport", 3, 24, 1.2, 6, 20);
 seaTacAirport.calculateTime();
 seaTacAirport.number_cookies_per_hour();
 seaTacAirport.sum_cookies();
 seaTacAirport.create_table();
+salmonStore.push(seaTacAirport);
 
 var seattleCenter = new Store ("Seattle Center", 11, 38, 3.7, 6, 20);
 seattleCenter.calculateTime();
 seattleCenter.number_cookies_per_hour();
 seattleCenter.sum_cookies();
 seattleCenter.create_table();
+salmonStore.push(seattleCenter);
 
 var capitolHill = new Store ("Capitol Hill", 20, 38, 2.3, 6, 20);
 capitolHill.calculateTime();
 capitolHill.number_cookies_per_hour();
 capitolHill.sum_cookies();
 capitolHill.create_table();
+salmonStore.push(capitolHill);
 
 var alki = new Store ("Alki", 6, 16, 4.6, 6, 20);
 alki.calculateTime();
@@ -222,6 +242,7 @@ alki.number_cookies_per_hour();
 alki.sum_cookies();
 alki.create_table();
 alki.create_table_footer();
+salmonStore.push(alki);
 
 //LISTENERS
 //accesses a listener on the browser - this listener is only activated within the <form> part of the
