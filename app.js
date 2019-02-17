@@ -168,7 +168,6 @@ Store.prototype.create_table_footer = function() {
   target.appendChild(table_footer_row);
 };
 
-
 //CREATING A NEW STORE
 //this function processes everything that is in <form> part of the html
 //the way this tie is shown in html is with a special nominclature that identifies
@@ -199,7 +198,7 @@ var handle_form_input = function(form_event) {
 
   //when an event it initiated regenerate the table and totals
   for (var y = 0; y < salmonStore.length; y++){
-    var recreatingTable = new Store (salmonStore[y].name, salmonStore[y].min_customers, salmonStore[y].max_customers, salmonStore[y].avg_cookies_per_customer[y], salmonStore[y].open_time, salmonStore[y].close_time);
+    var recreatingTable = salmonStore[y];
     recreatingTable.calculateTime();
     recreatingTable.number_cookies_per_hour();
     recreatingTable.sum_cookies();
