@@ -207,6 +207,7 @@ var handle_form_input = function(form_event) {
   recreatingTable.create_table_footer();
 };
 
+
 var firstAndPike = new Store ("First and Pike", 23, 65, 6.3, 6, 20);
 firstAndPike.calculateTime();
 firstAndPike.number_cookies_per_hour();
